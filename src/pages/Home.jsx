@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Col, Container, Row } from "reactstrap";
 import { Link } from 'react-scroll';
@@ -8,6 +8,7 @@ import Facebook from '../assets/images/facebook.png';
 import Instagram from '../assets/images/instagram.png';
 import CV from '../assets/files/Patrick_Llegos_CV.pdf';
 import { useNavigate } from "react-router-dom";
+import { isDesktop, isMobile } from "react-device-detect";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -42,28 +43,43 @@ export const Home = () => {
     const full = 'FULL';
     const stack = 'STACK';
     const socials = [
-        { link: "https://www.linkedin.com/in/patrick-llegos-576304126", image: LinkedIn },
-        { link: "https://www.facebook.com/strawhat.Patrick", image: Facebook },
-        { link: "https://www.instagram.com/llegospat", image: Instagram }
+        { id: 1, link: "https://www.linkedin.com/in/patrick-llegos-576304126", image: LinkedIn },
+        { id: 2, link: "https://www.facebook.com/strawhat.Patrick", image: Facebook },
+        { id: 3, link: "https://www.instagram.com/llegospat", image: Instagram }
     ];
 
     useEffect(() => {
-        setAnimateFull(true);
-        setTimeout(() => {
-            setAnimateStack(true)
-        }, 1200)
-        setTimeout(() => {
+        if (isDesktop) {
+            setAnimateFull(true);
+            setTimeout(() => {
+                setAnimateStack(true)
+            }, 1200)
+            setTimeout(() => {
+                setAnimateHello(true)
+            }, 3000)
+            setTimeout(() => {
+                setAnimateIam(true)
+            }, 3500)
+            setTimeout(() => {
+                setAnimatePat(true)
+            }, 4000)
+            setTimeout(() => {
+                setAnimateSocials(true)
+            }, 4500)
+        }
+
+        if (isMobile) {
             setAnimateHello(true)
-        }, 3000)
-        setTimeout(() => {
-            setAnimateIam(true)
-        }, 3500)
-        setTimeout(() => {
-            setAnimatePat(true)
-        }, 4000)
-        setTimeout(() => {
-            setAnimateSocials(true)
-        }, 4500)
+            setTimeout(() => {
+                setAnimateIam(true)
+            }, 500)
+            setTimeout(() => {
+                setAnimatePat(true)
+            }, 1000)
+            setTimeout(() => {
+                setAnimateSocials(true)
+            }, 2000)
+        }
     }, []);
 
 
@@ -71,50 +87,54 @@ export const Home = () => {
     return (
         <Container fluid className="w-100 px-0 mx-0" id="homepage">
             <section id="home" style={{ height: '100vh' }}>
-                <Row className="w-100 align-items-center justify-content-center h-100">
-                    <Col md="6">
-                        <div className="text-end" style={{ opacity: 0.1, color: '#fff', lineHeight: '10rem' }}>
-                            <p style={{ fontSize: '15rem', letterSpacing: '1rem' }} className="pos">
-                                {full.split('').map((letter, index) => (
-                                    <span
-                                        key={index}
-                                        className={`letter ${animateFull ? 'fade-up' : ''}`}
-                                        style={{ animationDelay: `${index * 300}ms` }}
-                                    >
-                                        {letter}
-                                    </span>
-                                ))}
-                            </p>
-                            <p style={{ fontSize: '15rem', letterSpacing: '1rem' }} className="pos">
-                                {stack.split('').map((letter, index) => (
-                                    <span
-                                        key={index}
-                                        className={`letter ${animateStack ? 'fade-up' : ''}`}
-                                        style={{ animationDelay: `${index * 300}ms` }}
-                                    >
-                                        {letter}
-                                    </span>
-                                ))}
-                            </p>
-                        </div>
-                    </Col>
-                    <Col md="6">
-                        <div style={{ lineHeight: '10rem' }}>
-                            <p style={{ fontSize: '10rem', letterSpacing: '1rem' }} className={animateHello ? "name fade-up" : "name"}>Hello<span className="text-danger">.</span></p>
-                            <p style={{ fontSize: '10rem', letterSpacing: '1rem' }} className={animateIam ? "name fade-up" : "name"}>I am</p>
-                            <p style={{ fontSize: '10rem', letterSpacing: '1rem' }} className={animatePat ? "name fade-up" : "name"}>Patrick</p>
+                <Row className="w-100 align-items-center justify-content-center h-100" style={{overflowX: 'hidden'}}>
+                    {isDesktop ?
+                        <Col md="6">
+                            <div className="text-end" style={{ opacity: 0.1, color: '#fff', lineHeight: '10rem' }}>
+                                <p style={{ fontSize: '15rem', letterSpacing: '1rem' }} className="pos">
+                                    {full.split('').map((letter, index) => (
+                                        <span
+                                            key={index}
+                                            className={`letter ${animateFull ? 'fade-up' : ''}`}
+                                            style={{ animationDelay: `${index * 300}ms` }}
+                                        >
+                                            {letter}
+                                        </span>
+                                    ))}
+                                </p>
+                                <p style={{ fontSize: '15rem', letterSpacing: '1rem' }} className="pos">
+                                    {stack.split('').map((letter, index) => (
+                                        <span
+                                            key={index}
+                                            className={`letter ${animateStack ? 'fade-up' : ''}`}
+                                            style={{ animationDelay: `${index * 300}ms` }}
+                                        >
+                                            {letter}
+                                        </span>
+                                    ))}
+                                </p>
+                            </div>
+                        </Col>
+                        : ""}
+                    <Col md={isDesktop ? "6" : "12"}>
+                        <div style={{ lineHeight: isDesktop ? '10rem' : "5rem" }}>
+                            <p style={{ fontSize: isDesktop ? '10rem' : "3rem", letterSpacing: '1rem' }} className={animateHello ? "name fade-up" : "name"}>Hello<span className="text-danger">.</span></p>
+                            <p style={{ fontSize: isDesktop ? '10rem' : "3rem", letterSpacing: '1rem' }} className={animateIam ? "name fade-up" : "name"}>I am</p>
+                            <p style={{ fontSize: isDesktop ? '10rem' : "3rem", letterSpacing: '1rem' }} className={animatePat ? "name fade-up" : "name"}>Patrick</p>
                         </div>
                         <div className="mb-3">
                             {socials.map(social => {
                                 return (
-                                    <a href={social.link} target="_blank"><img src={social.image} className={animateSocials ? "fade-up me-3 socialIcons" : "me-3 socialIcons"} /></a>
+                                    <span key={social.id}>
+                                        <a href={social.link} target="_blank"><img src={social.image} className={animateSocials ? "fade-up me-3 socialIcons" : "me-3 socialIcons"} /></a>
+                                    </span>
                                 )
                             })}
                         </div>
                         <div>
-                            <Button outline className={animateSocials ? "text-light me-3 fade-up" : "name"} onClick={handleDownloadCv}>download CV</Button>
-                            <Button outline className={animateSocials ? "text-light me-3 fade-up" : "name"} onClick={() => handlePageTransition('my-works')}>view my work</Button>
-                            <Button outline className={animateSocials ? "text-light me-3 fade-up" : "name"} onClick={() => handlePageTransition('tech-stacks')}>tech stacks</Button>
+                            <Button outline className={animateSocials ? "text-light me-3 mb-3 fade-up" : "name"} onClick={handleDownloadCv}>download CV</Button>
+                            <Button outline className={animateSocials ? "text-light me-3 mb-3 fade-up" : "name"} onClick={() => handlePageTransition('my-works')}>view my work</Button>
+                            <Button outline className={animateSocials ? "text-light me-3 mb-3 fade-up" : "name"} onClick={() => handlePageTransition('tech-stacks')}>tech stacks</Button>
                         </div>
                     </Col>
                 </Row>

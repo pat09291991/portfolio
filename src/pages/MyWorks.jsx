@@ -65,7 +65,7 @@ export const MyWorks = () => {
         <Container className="d-flex flex-column pt-5 vh-100">
             <div className="d-flex align-items-center justify-content-between">
                 <div className="otherPageTitle mb-5">
-                    <h1>Tech Stacks</h1>
+                    <h1>My Works</h1>
                     <hr className="underline" />
                 </div>
                 <div className="otherPageTitle mb-5">
