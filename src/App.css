@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+
+#root {
+  margin: 0 auto;
+  padding: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+#name {
+  letter-spacing: 3px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInBottom 1s ease-in-out forwards;
+}
+
+#pos {
+  letter-spacing: 3px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInBottom 1s ease-in-out forwards;
+}
+
+#myWorkButton {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInBottom 1s ease-in-out forwards;
+  animation-delay: 1s;
+  letter-spacing: 2px;
+}
+
+@keyframes fadeInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.proj {
+  opacity: 0;
+  animation-name: fadeInOut;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.socialIcons {
+  height: 3rem;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.underline {
+  border: none;
+  border-top: 10px solid red;
+  /* Adjust the color as needed */
+  width: 10rem;
+}
+
+.otherPageTitle {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInBottom 1s ease-in-out forwards;
+}
+
+.underlineBack {
+  border: none;
+  border-top: 10px solid red;
+  /* Adjust the color as needed */
+  width: 5rem;
+}
+
+.letter {
+  opacity: 0;
+}
+
+.fade-up {
+  animation: fadeUpAnimation 1s forwards;
+}
+
+@keyframes fadeUpAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.name {
+  opacity: 0;
+}

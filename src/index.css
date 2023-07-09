@@ -1,0 +1,32 @@
+body {
+  background-color: #242424 !important;
+  color: white;
+  /* display: flex;
+  place-items: center; */
+  min-height: 100vh;
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-200%);
+  }
+}
+
+#landing {
+  animation: moveUp 2s ease-in-out forwards;
+  animation-delay: 4s;
+}
+
+#homepage {
+  transition: transform 2s ease;
+  /* Add smooth transition effect */
+}
+
+.slide-left {
+  transform: translateX(-200%);
+  /* Slide content to the left */
+}
